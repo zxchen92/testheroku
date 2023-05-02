@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Page</title>
+  </head>
+  <body>
+    <button id="button1" onclick="openWindow('dataplacecrawler')">Place crawler</button>
+    <button id="button2" onclick="openWindow('datareviewcrawler')">Review crawler</button>
+
+    
+    <!------------------- Scripts ---------------------->
+    <script>
+        function openWindow(url) {
+          window.open(url, "myWindow", "width=500, height=500");
+        }
+    </script>
+  </body>
+</html>
+
+{% endblock %}

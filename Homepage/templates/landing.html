@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+	<title>CollabFood Platform</title>
+</head>
+
+<div class="container mt-5">
+	<h1 class="text-center display-4">Welcome to CollabFood</h1>
+</div>
+<br>
+<!-- This container splits the page into half -->
+<style>
+  .container-vertical-line {
+    height: 620px;
+    position: relative;
+  }
+  .vertical-line {
+    border-left: 1px solid black;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  .section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .register-links-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.card-custom {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+</style>
+
+<div class="container my-5">
+  <div class="row d-flex align-items-stretch">
+    <div class="col-md-6">
+      <div class="card p-3 mb-4 card-custom h-100">
+        <h2 class="text-center">Food Lovers</h2>
+        <p class="text-center">Don't know what to eat for today's lunch? Let us recommend some food to you based on users with similar preferences! Join us now to discover more!</p>
+        <p class="text-center">We have a total of <strong>{{business_count}}</strong> registered Businesses and the numbers are still climbing! Register now in order to find out more about what kind of promotions you can get!</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3 mb-4 card-custom h-100">
+        <h2 class="text-center">For Business Owners</h2>
+        <p class="text-center">Ever wondered what directions you should steer your food stall/resturant to for success? Let our Big Data tell you the stories! Join us now to have more insights of what the local preferences are!</p>
+        <p class="text-center">We have a total of <strong>{{user_count}}</strong> registered Users and the numbers are still increasing daily! Register now to reach out to all these users!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if user.is_authenticated %}
+
+{%else%}
+<div class="container rounded">
+  <div class="row">
+    <div class="col-md-6">
+      <div>
+        <!-- <div class="text-center">For Food Lovers Registration:</div> -->
+        <br>
+        <a href="{% url 'registeruser' %}" class="list-group-item list-group-item-action active text-center" aria-current="true">Register as a User</a>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div>
+        <!-- <div class="text-center">For Business Owners Registration:</div> -->
+        <br>
+        <a href="{% url 'registerbusiness' %}" class="list-group-item list-group-item-action active text-center" aria-current="true">Register a Business</a>
+      </div>
+    </div>
+  </div>
+</div>
+{%endif%}
+
+{% endblock %}

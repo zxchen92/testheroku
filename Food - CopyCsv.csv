@@ -1,0 +1,97 @@
+foodid;food;category;vegetarian;halal;seafood_free
+1;Assam Pedas;malay;halal;seafood_free;
+2;ayam Goreng;malay;halal;seafood_free;
+3;Ayam Penyet;malay;halal;seafood_free;
+4;Bak chor mee;chinese;seafood_free;
+5;Bak Kut Teh;chinese;seafood_free;
+6;Bakso;malay;halal;
+7;BanMian;chinese;seafood_free;
+8;Basil pork;thai;
+9;Bee Hoon Goreng;malay;vegetarian;halal;seafood_free
+10;Beef Kway Teow;chinese;seafood_free;
+11;Beef Noodle Soup;chinese;seafood_free;
+12;Bibimbap;korean;seafood_free
+13;Big bao;chinese;halal;seafood_free;
+14;Black pepper crab;chinese;
+15;Briyani;indian;halal;
+16;Chai tow kway;chinese;vegetarian;halal;seafood_free
+17;Char Kway Teow;chinese;seafood_free;
+18;Char siu bao;chinese;seafood_free;
+19;Char siu rice;chinese;seafood_free;
+20;Chicken chop;western;seafood_free;
+21;Chicken cutlet;western;seafood_free;
+22;chilli crab;chinese;
+23;Crab bee Hoon;chinese;
+24;Curry chicken noodles;chinese;
+25;Curry don;japanese;halal;
+26;Dendeng paru;malay;halal;
+27;dim sum;chinese;
+28;Duck rice;chinese;seafood_free;
+29;Fish ball noodles;chinese;
+30;Fish head curry;chinese;halal;seafood_free;
+31;Fish Soup bee Hoon;chinese;halal;seafood_free;
+32;Fried chicken;chinese;halal;seafood_free;
+33;Green curry;malay;halal;seafood_free;
+34;Gudeg putih;malay;vegetarian;halal;seafood_free
+35;Gulai daun ubi;malay;vegetarian;halal;seafood_free
+36;Gyoza;japanese;vegetarian;seafood_free;
+37;Hainanese chicken rice;chinese;halal;seafood_free;
+38;Hainanese curry rice;chinese;
+39;Har cheong gai;chinese;
+40;Hokkien Mee;chinese;
+41;Japchae;korean;seafood_free
+42;katong Laksa;chinese;
+43;Ketupat;malay;vegetarian;halal;seafood_free
+44;Kimchi jjigae;seafood_free
+45;Korean BBQ;korean;
+46;Korean Fried Chicken;korean;seafood_free
+47;Kway Chap;chinese;seafood_free;
+48;Kway Teow Goreng;malay;vegetarian;seafood_free;
+49;Lotus bao;chinese;vegetarian;halal;seafood_free
+50;Mala;chinese;
+51;Mee Bakso;malay;halal;seafood_free;
+52;Mee goreng;malay;halal;
+53;mee rebus;malay;halal;
+54;Mee siam;malay;halal;
+55;Mee soto;malay;halal;
+56;Mixed Grill;western;
+57;Mookata;thai;
+58;Naan;indian;vegetarian;halal;seafood_free
+59;Nasi Goreng;malay;halal;
+60;Nasi lemak;malay;halal;
+61;nasi Padang;malay;halal;
+62;Oyakodon;japanese;halal;seafood_free;
+63;oyster omelette;chinese;halal;
+64;Pad thai;thai;vegetarian;halal;
+65;Pecel lele;malay;halal;
+66;pig organ soup;chinese;halal;
+67;Pineapple fried rice;thai;
+68;Pork chop;western;
+69;Ramen;japanese;
+70;rawon;malay;halal;
+71;Red bean bao;chinese;vegetarian;halal;seafood_free
+72;Red curry;thai;halal;
+73;Roasted pork belly;chinese;
+74;Rojak;local;halal;seafood_free;
+75;Roti john;indian;halal;
+76;Roti prata;indian;halal;
+77;Samgyetang;korean;seafood_free
+78;Satay;malay;halal;seafood_free;
+79;Satay bee hoon;local;halal;seafood_free;
+80;Sayur lodeh;malay;vegetarian;halal;seafood_free
+81;Shabu shabu;japanese;halal;
+82;Sliced fish soup;chinese;halal;
+83;soup kambing;indian;halal;
+84;Steak;western;halal;seafood_free;
+85;Sushi;japanese;halal;
+86;takoyaki;japanese;halal;
+87;Teochew porridge;chinese;
+88;Teppanyaki;japanese;
+89;Teriyaki;japanese;
+90;Tteokbokki;korean;vegetarian;seafood_free
+91;tom yum;thai;halal;seafood_free;
+92;Turtle soup;chinese;
+93;Vegetarian bee hoon;chinese;vegetarian;halal;seafood_free
+94;Xiao long bao;chinese;seafood_free;
+95;Yakiniku;japanese;
+96;Yong tau foo;chinese;

@@ -1,0 +1,11 @@
+<!-- recommendations.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Recommended Food Items for  {{ request.user.username }}</h1>
+    <p>Here are some food items we think you might enjoy:</p>
+    <ul>
+        <li>{{ recommendations.0 }}</li>
+    </ul>
+{% endblock %}

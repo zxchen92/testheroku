@@ -1,0 +1,66 @@
+[
+    {
+        "model": "Homepage.FoodCategory",
+        "pk": 1,
+        "fields": {
+            "categoryName": "Western",
+            "adminID": 1
+        }
+    },
+    {
+        "model": "Homepage.FoodCategory",
+        "pk": 4,
+        "fields": {
+            "categoryName": "Chinese",
+            "adminID": 1
+        }
+    },
+    {
+        "model": "Homepage.FoodCategory",
+        "pk": 5,
+        "fields": {
+            "categoryName": "Korean",
+            "adminID": 1
+        }
+    },
+    {
+        "model": "Homepage.FoodCategory",
+        "pk": 6,
+        "fields": {
+            "categoryName": "Malay",
+            "adminID": 1
+        }
+    },
+    {
+        "model": "Homepage.FoodCategory",
+        "pk": 7,
+        "fields": {
+            "categoryName": "Indian",
+            "adminID": 1
+        }
+    },
+    {
+        "model": "Homepage.FoodCategory",
+        "pk": 9,
+        "fields": {
+            "categoryName": "Local",
+            "adminID": 1
+        }
+    },
+    {
+        "model": "Homepage.FoodCategory",
+        "pk": 10,
+        "fields": {
+            "categoryName": "Japanese",
+            "adminID": 1
+        }
+    },
+    {
+        "model": "Homepage.FoodCategory",
+        "pk": 11,
+        "fields": {
+            "categoryName": "Thai",
+            "adminID": 1
+        }
+    }
+]

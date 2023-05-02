@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Food Quiz!</h1>
+
+<h3>Please rate the food from 1-5, 1 being the most disliked, 5 being the well-liked</h3>
+
+<form action="{% url 'foodquiz' %}" method="post" id="rating-form">
+{% csrf_token %}
+    {% for food in foodQuizList %}
+        <div> Food {{ forloop.counter }}/10: {{food}} </div>
+        <div class="star-rating">
+            <input type="radio" id="rating-5-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="5">
+            <label for="rating-5-{{ forloop.counter }}">5</label>
+            <input type="radio" id="rating-4-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="4">
+            <label for="rating-4-{{ forloop.counter }}">4</label>
+            <input type="radio" id="rating-3-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="3">
+            <label for="rating-3-{{ forloop.counter }}">3</label>
+            <input type="radio" id="rating-2-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="2">
+            <label for="rating-2-{{ forloop.counter }}">2</label>
+            <input type="radio" id="rating-1-{{ forloop.counter }}" name="rating-{{ forloop.counter }}" value="1">
+            <label for="rating-1-{{ forloop.counter }}">1</label>
+        </div>
+        <input type="hidden" id="food-{{ forloop.counter }}" name="food-{{ forloop.counter }}" value="{{ food }}">
+    {% endfor %}
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    
+    document.querySelectorAll('input[name="rating"]').forEach(function(radio) {
+        radio.addEventListener('change', function(event) {
+          console.log('Selected rating: ' + event.target.value);
+        });
+      });
+    
+    document.getElementById('rating-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let allRatingsSelected = true;
+
+        for (let i = 1; i <= 10; i++) {
+            const ratingInputs = document.querySelectorAll(`input[name="rating-${i}"]`);
+            let ratingSelected = false;
+
+            ratingInputs.forEach(function(input) {
+                if (input.checked) {
+                    ratingSelected = true;
+                }
+            });
+
+            if (!ratingSelected) {
+                    allRatingsSelected = false;
+                    break;
+            }
+        }
+
+        if (allRatingsSelected) {
+            this.submit();
+        } else {
+            alert('Please rate all the foods before submitting.');
+        }
+    });
+
+    document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+        radio.addEventListener('change', function(event) {
+            console.log('Selected rating: ' + event.target.value);
+            });
+    });
+</script>
+
+{% endblock %}

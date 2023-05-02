@@ -1,0 +1,101 @@
+Banmian, soupy
+Beef kway teow, soupy
+Beef noodle soup, soupy
+Bee hoon goreng, fried
+Char kway teow, savoury
+Crab bee hoon, soupy
+Fish soup bee hoon, soupy
+Hokkien mee, gravy
+Katong laksa, spicy
+Kway chap, savoury
+Kway teow goreng, fried
+Mee bakso, soupy
+Mee goreng, spicy
+Mee rebus, spicy
+Bak chor mee, savoury
+Mee siam, spicy
+Mee soto, soupy
+Satay bee hoon, gravy
+Vegetarian bee hoon, healthy
+Assam pedas, spicy
+Ayam goreng, fried
+Ayam penyet, fried
+Bak kut teh, savoury
+Bakso, soupy
+Biryani, savoury
+Black pepper crab, spicy
+Chai tow kway, savoury
+Char siu rice, fatty
+Chilli crab, spicy
+Dendeng paru, spicy
+Duck rice, fatty
+Fish head curry, spicy
+Gudeg putih, savoury
+Gulai daun ubi, gravy
+Hainanese chicken rice, savoury
+Hainanese curry rice, gravy
+Har Cheong Gai, fried
+Ketupat, heavy
+Naan, light
+Nasi goreng, fried
+Nasi lemak, heavy
+Nasi padang, heavy
+Oyster omelette, savoury
+Pecel lele, fried
+Pig's organ soup, soupy
+Rawon, soupy
+Rojak bandung, sweet
+Roti john, savoury
+Roti prata, savoury
+Satay, grill
+Sayur lodeh, gravy
+Sliced fish soup, soupy
+Soto ayam, soupy
+Soup kambing, soupy
+Teochew porridge, savoury
+Turtle soup, soupy
+
+Xiao long bao, savoury
+Char siu bao, sweet
+Big bao, savoury
+Lotus bao, sweet
+Red bean bao, sweet
+Dim sum, savoury
+Fish ball noodles, savoury
+Yong tau foo, healthy
+Roasted pork belly, fried
+Curry chicken noodles, spicy
+Mala, spicy
+Pad thai, fried
+Basil pork, fried
+Pineapple fried rice, fried
+Tom yum, spicy
+Green curry, spicy
+Mookata, grill
+Chicken chop, grill
+Pork chop, grill
+Chicken cutlet, fried
+Steak, grill
+Mixed grill, grill
+Fried chicken, fried
+
+Sushi, savoury
+Ramen, savoury
+Teppanyaki, grill
+Shabu shabu, savoury
+Gyoza, fried
+Takoyaki, fried
+Wagyu beef, grill
+Yakiniku, grill
+Teriyaki, sweet
+Curry don, spicy
+Oyakodon, savoury
+
+Tags:
+savoury, soupy, dry, fried, fatty, sweet, healthy, gravy, grill, spicy, heavy, light,
+
+
+
+
+
+

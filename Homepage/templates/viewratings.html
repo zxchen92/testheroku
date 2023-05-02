@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block content %}
+
+<style>
+    .checked {
+        color: orange;
+    }
+    .unchecked{
+        color: grey;
+    }
+</style>
+    
+
+<h1>View Past Ratings</h1>
+<br>
+
+<input class="form-control" id="searchRatings" type="text" placeholder="Search..">
+<br>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Food</th>
+            <th scope="col">Rating</th>
+        </tr>
+    </thead>
+    <tbody id="RatingBody">
+        {% for item, checked_range, unchecked_range in rating_values %}
+            <tr>
+                <th scope="row">{{ item.food }}</th>
+                <td>
+                    {% for i in checked_range %}
+                        <span class="fa fa-star checked"></span>
+                    {% endfor %}
+                    {% for i in unchecked_range %}
+                        <span class="fa fa-star unchecked"></span>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function(){
+      $("#searchRatings").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#RatingBody tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+</script>
+
+{% endblock %}

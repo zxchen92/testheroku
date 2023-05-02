@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/1F2mBADf8Bv7AwptH5l6gXp7gD8F10F8oM/qw//" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-bar-rating@1.2.2/dist/themes/fontawesome-stars.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+		.star-rating {
+		  display: inline-block;
+		  font-size: 24px;
+		  cursor: pointer;
+		}
+		
+		.star-rating:not(:checked) > input {
+		  position: absolute;
+		  clip: rect(0, 0, 0, 0);
+		  pointer-events: none;
+		}
+		
+		.star-rating:not(:checked) > label {
+		  float: right;
+		  width: 1em;
+		  padding: 0 .1em;
+		  overflow: hidden;
+		  white-space: nowrap;
+		  cursor: pointer;
+		  font-size: 200%;
+		  line-height: 1.2;
+		  color: #ddd;
+		  text-shadow: 1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0, 0, 0, .5);
+		}
+		
+		.star-rating:not(:checked) > label:before {
+		  content: '★ ';
+		}
+		
+		.star-rating > input:checked ~ label {
+		  color: #ffd700;
+		  text-shadow: 1px 1px #ce7;
+		}
+		
+		.star-rating:not(:checked) > label:hover, .star-rating:not(:checked) > label:hover ~ label {
+		  color: gold;
+		  text-shadow: 1px 1px goldenrod, 2px 2px #5f5f00;
+		}
+		</style>
+
+  </head>
+  <body style="background-color: #f5f5f5;">
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-bar-rating@1.2.2/dist/jquery.barrating.min.js"></script>
+
+	<!-- Navbar -->
+  	<nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #789FC5;">
+	  <a class="navbar-brand" href="{% url 'landing' %}">CollabFood</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      
+    		<!-- links to the left -->
+	      {% if user.is_authenticated %}
+					{% if user_type.userType == 'admin' %}
+					<!-- links that admins should see -->
+		      <li class="nav-item active">
+					  <a class="nav-link" href="{% url 'adminhome' %}">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="{% url 'foodcategory' %}">Food Category <span class="sr-only">(current)</span></a>
+				  </li>
+				  <li class="nav-item active">
+					  <a class="nav-link" href="{% url 'recommenderpage' %}">Recommender <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+					  <a class="nav-link" href="{% url 'searchusers' %}">Users <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="{% url 'searchbusinesses' %}">Businesses <span class="sr-only">(current)</span></a>
+				  	</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="{% url 'searchpromotions' %}">Promotions<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="{% url 'datacrawler' %}">Crawler <span class="sr-only">(current)</span></a>
+				  	</li>
+
+					{% elif user_type.userType == 'user' %}
+					<!-- links that regular users should see -->
+		      		<li class="nav-item active">
+					  <a class="nav-link" href="{% url 'userhome' %}">Home<span class="sr-only">(current)</span></a>
+					</li>
+		      		<li class="nav-item active">
+					  <a class="nav-link" href="{% url 'searchpromotions' %}">Promotions<span class="sr-only">(current)</span></a>
+					</li>					
+					<li class="nav-item active">
+					  <a class="nav-link" href="{% url 'recommenderpage' %}">Recommender<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="{% url 'searchbusinesses' %}">Businesses<span class="sr-only">(current)</span></a>
+				  	</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="{% url 'viewratings' %}">Past Ratings<span class="sr-only">(current)</span></a>
+				  	</li>
+
+					{% elif user_type.userType == 'business'%}
+					<!-- links that business users should see -->
+		      <li class="nav-item active">
+					  <a class="nav-link" href="{% url 'businesshome' %}">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="{% url 'searchpromotions' %}">Promotions<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="{% url 'datainsights' %}">Data Insights <span class="sr-only">(current)</span></a>
+					</li>
+					{% endif %}
+
+					{% if user_type.userType == 'admin' %}
+					<!-- links that admins should see -->
+						
+
+					{% elif user_type.userType == 'user' %}
+					<!-- links that regular users should see -->
+
+					{% elif user_type.userType == 'business'%}
+					<!-- links that business users should see -->
+					{% endif %}
+
+	      {% endif %}
+
+	    </ul>
+    	<!-- Links to the right -->
+	    <ul class="navbar-nav ml-auto">
+	    	<li class="nav-item">
+	        <a class="nav-link" href="{% url 'about' %}">About <span class="sr-only">(current)</span></a>
+	      </li>
+	    	<li class="nav-item">
+        	<a class="nav-link" href="{% url 'customersupport' %}">Support <span class="sr-only">(current)</span></a>
+	      </li>
+	    	{% if user.is_authenticated %}
+	    		<li class="nav-item">
+					  <a class="nav-link" href="{% url 'profile' %}">My Profile <span class="sr-only">(current)</span></a>
+					</li>
+		      <li class="nav-item">
+	        	<a class="nav-link" href="{% url 'logout' %}">Logout <span class="sr-only">(current)</span></a>
+		      </li>
+		    {% else %}
+		    	<li class="nav-item">
+	        	<a class="nav-link" href="{% url 'login' %}">Login <span class="sr-only">(current)</span></a>
+		      </li>
+<!-- 		      <li class="nav-item">
+	        	<a class="nav-link" href="{% url 'register' %}">Register <span class="sr-only">(current)</span></a>
+		      </li> -->
+	    	{% endif %}
+
+	    </ul>
+
+	  </div>
+	</nav>
+	
+	
+	<div class="container">
+		{% if messages %}
+		  {% for message in messages %}
+		  	<div class="alert {% if message.tags %}{% if message.tags == 'error' %}alert-danger{% elif message.tags == 'warning' %}alert-warning{% else %}alert-success{% endif %}{% endif %} alert-dismissable" role="alert" style=" top: 10px; left: 0; right: 0; margin: 0 auto; z-index: 9999; width: 500px; padding: 5px 10px;">
+
+		      <button class="close" data-dismiss="alert">
+		        <small><sup>x</sup></small>
+		      </button>
+		      {{message}}
+		    </div><br>
+		  {% endfor %}
+		{% endif %}
+
+
+		<br>
+		{% block content %}
+		{% endblock %}
+	</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+  </body>
+</html>
+

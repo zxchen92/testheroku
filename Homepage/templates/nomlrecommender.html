@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Include Font Awesome CSS for star rating -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+  .text-center {
+    margin-top: 10px;
+  }
+  .btn-wide {
+    margin-top: 10px;
+    width: 150px; /* adjust the value to your preference */
+  }
+  .card {
+    border-radius: 10px;
+    margin-top: 15px;
+  }
+</style>
+<div class="card mb-4 shadow">
+<div class="card-body text-center">
+<h2>Here's your recommendation for the day:</h2>
+<h2>diet is{{ food_category }}</h2>
+<br>
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Dish</th>
+      <th scope="col">Category</th>
+      <th scope="col">Dietary Restrictions</th>
+      <th scope="col">Rating</th>
+    </tr>
+  </thead>
+  <tbody id="Category">
+
+      {% for foodid, food_obj in recommendations.items %}
+      <!-- <tr class = "clickable-row">
+          <th scope="row">{{ food_obj.foodName }}</td> -->
+          <tr class="clickable-row">
+          <td onclick="searchOnMaps('{{ food_obj.foodName }}')">{{ food_obj.foodName }}</td>
+          <td>{{ food_obj.foodCategory.categoryName }}</td>
+          <td>{{ food_obj.dietary_restrictions }}</td>
+
+          <td><form action="{% url 'rate' %}" method="post" id="rating-form">
+            {% csrf_token %}
+            <div class="star-rating">
+              <input type="radio" id="rating-5" name="rating" value="5">
+              <label for="rating-5">5</label>
+              <input type="radio" id="rating-4" name="rating" value="4">
+              <label for="rating-4">4</label>
+              <input type="radio" id="rating-3" name="rating" value="3">
+              <label for="rating-3">3</label>
+              <input type="radio" id="rating-2" name="rating" value="2">
+              <label for="rating-2">2</label>
+              <input type="radio" id="rating-1" name="rating" value="1">
+              <label for="rating-1">1</label>
+            </div>
+            <br>
+            <input type="hidden" id="food" name="food" value="{{ food_obj.foodName  }}">
+            <button class="btn btn-success btn-wide" type="submit">Rate it</button>
+          </form></td>
+          <!-- above code is confirmed working!! -->
+      </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+</div>
+</div>
+
+<div class="input-group mb-4">
+  <input type="text" class="form-control" placeholder="Search for a specific hawker" aria-label="Search hawkers" aria-describedby="button-addon2" id="searchCategory">
+</div>
+
+<div class="card mb-4 shadow">
+<div class="card-body text-center">
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Hawkers</th>
+      <th scope="col">Address / Postal Code</th>
+      <th scope="col">Ratings</th>
+    </tr>
+  </thead>
+  <tbody id="Category">
+        <tr>
+        <th scope="row">Ah Hock Noodles</th>
+        <td>Maxwell Foodcourt</td>
+        <td><span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star-half-o checked"></span>    (4.5)</td>
+        </tr>
+        <tr>
+          <th scope="row">The Delicious Noodles</th>
+          <td>Tampines Foodcourt</td>
+          <td><span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-o checked"></span>
+            <span class="fa fa-star-o checked"></span>   (3.0)</td>
+          </tr>
+          <tr>
+            <th scope="row">LOL Noodles</th>
+            <td>Bedok Foodcourt</td>
+            <td><span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star-half-o checked"></span>
+              <span class="fa fa-star-o checked"></span>    (3.5)</td>
+            </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#searchCategory").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#Category tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+document.querySelectorAll('input[name="rating"]').forEach(function(radio) {
+    radio.addEventListener('change', function(event) {
+      console.log('Selected rating: ' + event.target.value);
+    });
+  });
+
+function searchOnMaps(query) {
+// encode the query string to make it URL-safe
+var encodedQuery = encodeURIComponent(query);
+
+// construct the Google Maps search URL with the encoded query string
+var searchUrl = "https://www.google.com/maps/search/?api=1&query=" + encodedQuery;
+
+// open the search URL in a new tab
+window.open(searchUrl, "_blank");
+}
+
+</script>
+
+{% endblock %}

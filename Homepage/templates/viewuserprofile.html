@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Manage User: {{ selected_user.username }}</h1><br>
+<form method="post" action="{% url 'updateuser' user_id=selected_user.id %}">
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="first_name">First Name</label>
+      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="eg. John" value="{{ selected_user.first_name }}" {{disabled}}>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="last_name">Last Name</label>
+      <input type="text" class="form-control" id="last_name" name="last_name" placeholder="eg. Doe" value="{{ selected_user.last_name }}" {{disabled}}>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="birthdate">Birth date:</label>
+      <input type="date" id="birthdate" name="birthdate" class="form-control" value="{{ selected_user_profile.birthdate|date:'Y-m-d' }}" {{disabled}}>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="gender">Gender</label>
+      <select class="custom-select"name="gender" {{disabled}}>
+          <option selected>Gender</option>
+          {% for value, label in gender_options %}
+              <option value="{{ value }}" {% if selected_user_profile.gender == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="eg. name@example.com" value="{{ selected_user.email }}" {{disabled}}>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="phone">Phone Number</label>
+      <input type="tel" class="form-control" id="phone" name="phone" placeholder="eg. 12345678" value="{{ selected_user_profile.phone }}" {{disabled}}>
+    </div>
+  </div>
+    <div class="form-group">
+      <label for="favorite_food">Favourite food</label>
+      <input type="text" class="form-control" id="favorite_food" name="favorite_food" placeholder="eg. Duck Rice" value="{{ selected_user_profile.favFood }}" {{disabled}}>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="preferred_location">Prefered Location</label>
+      <select class="custom-select custom-select-lg mb-3" id="preferred_location" name="preferred_location" {{disabled}}>
+        <option selected>Select your preferred Location</option>
+          {% for value, label in location_options %}
+            <option value="{{ value }}" {% if selected_user_profile.prefLocation == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="food_category">Food Genre</label>
+      <select class="custom-select custom-select-lg mb-3" id="food_category" name="food_category" value="{{selected_user_profile.foodCategory.categoryName}}" {{disabled}}>
+        <option selected>Select your prefered food genre</option>
+          {% if foodCategory %}
+          {% for item in foodCategory %}
+          <option value="{{ item.pk }}" {% if selected_user_profile.foodCategory.categoryName == item.categoryName %}selected{% endif %}>{{ item.categoryName }}</option>
+          {% endfor %}
+        {% endif %}
+      </select>
+    </div>
+  </div>
+  {% if user_type.userType == 'admin' %}
+  <div class="form-group">
+    <label for="dietary_restrictions">Dietary Restrictions:</label>
+    {% for value, label in DIETARY_RESTRICTIONS_OPTIONS %}
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="dietary_restrictions" value="{{ value }}" id="dietary_restrictions_{{ forloop.counter }}" {% if label in dietary_restrictions %}checked{% endif %}>
+      <label class="form-check-label" for="dietary_restrictions_{{ forloop.counter }}">{{ label }}</label>
+    </div>
+    {% endfor %}			
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" name="username" value="{{ selected_user.username }}" {{disabled}}>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" {{disabled}}>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>User Status: {% if selected_user.is_active %}Active{% else %}Deactivated{% endif %}</label><br>
+    <input type="checkbox" id="is_active" name="is_active" {% if not selected_user.is_active %}checked{% endif %}>
+    <label for="is_active">Deactivate User</label>
+  </div>
+  <a href="javascript:history.back()" class="btn btn-primary">Back</a>
+  <button type="submit" class="btn btn-primary">Save</button>
+  {% endif %}
+</form>
+
+{% endblock %}
+

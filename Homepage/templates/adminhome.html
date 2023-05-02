@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Welcome {{ user.first_name }} {{ user.last_name }}</h1>
+<br>
+<div>There are {{not_verified_count}} business(es) awaiting verification.</div>
+
+{% endblock %}

@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Manage Profile</h1>
+<br>
+{% if user.is_authenticated %}
+	{% if user_type.userType == 'admin' %}
+	<form method="post" action="{% url 'updateadmin' %}">
+		{% csrf_token %}
+			<div class="form-row">
+				<div class="form-group col-md-3">
+					<label for="first_name">First Name</label>
+					<input type="text" class="form-control" id="first_name" name="first_name" placeholder="eg. John" value="{{ user.first_name }}" required>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="last_name">Last Name</label>
+					<input type="text" class="form-control" id="last_name" name="last_name" placeholder="eg. Doe" value="{{ user.last_name }}" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="email">Email</label>
+					<input type="email" class="form-control" id="email" name="email" placeholder="eg. name@example.com" value="{{ user.email }}" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-3">
+					<label for="username">Username</label>
+					<input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="password">Password</label>
+					<input type="password" class="form-control" id="password" name="password">
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</form>
+
+	{% elif user_type.userType == 'user' %}
+	<form method="post" action="{% url 'updateuser_self' %}">
+		{% csrf_token %}
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="first_name">First Name</label>
+					<input type="text" class="form-control" id="first_name" name="first_name" placeholder="eg. John" value="{{ user.first_name }}" required>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="last_name">Last Name</label>
+					<input type="text" class="form-control" id="last_name" name="last_name" placeholder="eg. Doe" value="{{ user.last_name }}" required>
+				</div>
+				<div class="form-group col-md-2">
+					<label for="birthdate">Birth Date:</label>
+					<input type="date" id="birthdate" name="birthdate" class="form-control" value="{{ user_profile.birthdate|date:'Y-m-d' }}" required>
+				</div>
+				<div class="form-group col-md-2">
+					<label for="gender">Gender</label>
+					<select class="custom-select"name="gender" required>
+						<option value="" selected>Gender</option>
+						{% for value, label in gender_options %}
+							<option value="{{ value }}" {% if user_profile.gender == value %}selected{% endif %}>{{ label }}</option>
+						{% endfor %}
+					</select>
+				  </div>
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="email">Email</label>
+					<input type="email" class="form-control" id="email" name="email" placeholder="eg. name@example.com" value="{{ user.email }}" required>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="phone">Phone Number</label>
+					<input type="tel" class="form-control" id="phone" name="phone" placeholder="eg. 12345678" value="{{user_profile.phone}}" required>
+				</div>
+			</div>
+		    <div class="form-group">
+				<label for="favorite_food">Favourite food</label>
+				<input type="text" class="form-control" id="favorite_food" name="favorite_food" placeholder="eg. Duck Rice" value="{{user_profile.favFood}}" required>
+			</div>
+		  	<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="preferred_location">Prefered Location</label>
+					<select class="custom-select custom-select-lg mb-3" id="preferred_location" name="preferred_location" required>
+					    <option value="" selected>Select your preferred Location</option>
+					    {% for value, label in location_options %}
+					        <option value="{{ value }}" {% if user_profile.prefLocation == value %}selected{% endif %}>{{ label }}</option>
+					    {% endfor %}
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="food_category">Food Genre</label>
+					<select class="custom-select custom-select-lg mb-3" id="food_category" name="food_category" value="{{user_profile.foodCategory.categoryName}}" required>
+						<option value="" selected>Select your prefered food genre</option>
+				    	{% if foodCategory %}
+							{% for item in foodCategory %}
+								<option value="{{ item.pk }}" {% if user_profile.foodCategory.categoryName == item.categoryName %}selected{% endif %}>{{ item.categoryName }}</option>
+							{% endfor %}
+						{% endif %}
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="dietary_restrictions">Dietary Restrictions:</label>
+				{% for value, label in DIETARY_RESTRICTIONS_OPTIONS %}
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" name="dietary_restrictions" value="{{ value }}" id="dietary_restrictions_{{ forloop.counter }}" {% if label in dietary_restrictions %}checked{% endif %}>
+					<label class="form-check-label" for="dietary_restrictions_{{ forloop.counter }}">{{ label }}</label>
+				</div>
+				{% endfor %}			
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="username">Username</label>
+					<input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="password">Password</label>
+					<input type="password" class="form-control" id="password" name="password">
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</form>
+
+		{% elif user_type.userType == 'business'%}
+		<form method="post" action="{% url 'updatebusiness_self' %}">
+			{% csrf_token %}
+			<div class="form-row">
+				<div class="form-group col-md-8">
+					<label for="companyName">Company Name</label>
+					<input type="text" class="form-control" id="companyName" name="company_name" placeholder="eg. Ah Huat Duck Rice" value="{{ business_profile.companyName }}" required>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="uen">Company UEN</label>
+					<input type="text" class="form-control" id="uen" name="uen" placeholder="eg. T09LL0001B" readonly value="{{ business_profile.uen }}" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="firstName">Contact Person First Name</label>
+					<input type="text" class="form-control" id="firstName" name="first_name" placeholder="eg. John" value="{{ user.first_name }}" required>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="lastName">Contact Person Last Name</label>
+					<input type="text" class="form-control" id="lastName" name="last_name" placeholder="eg. Doe" value="{{ user.last_name }}" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="phone">Contact Person Phone Number</label>
+					<input type="tel" class="form-control" id="phone" name="phone" placeholder="eg. 12345678" value="{{business_profile.phone}}" required>
+				</div>
+				<div class="form-group col-md-6">
+				  <label for="email">Contact Person Email</label>
+				  <input type="email" class="form-control" id="email" name="email" placeholder="eg. name@example.com" value="{{ user.email }}" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-9">
+					<label for="address">Address</label>
+					<input type="text" class="form-control" id="address" name="address" placeholder="eg. 1234 Main St" value="{{ business_profile.address }}" required>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="postal_code">Postal code</label>
+					<input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ business_profile.postalCode }}" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="food_category">Food Genre</label>
+				<select class="custom-select custom-select-lg mb-3" name="food_category" id="food_category" required>
+				  <option value="" selected>Select your business's food genre</option>
+					{% if foodCategory %}
+						{% for item in foodCategory %}
+							<option value="{{ item.pk }}" {% if business_profile.foodCategory.categoryName == item.categoryName %}selected{% endif %}>{{ item.categoryName }}</option>
+						{% endfor %}
+					{% endif %}
+				</select>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="username">Username</label>
+					<input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="password">Password</label>
+					<input type="password" class="form-control" id="password" name="password">
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</form>
+	{% endif %}
+{% endif %}
+{% endblock %}

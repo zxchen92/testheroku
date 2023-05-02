@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Register Now!</h1>
+<br>
+
+<!-- This container splits the page into half -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="section">
+      	<div>For Food Lovers Registration:</div>
+        <a href="{% url 'registeruser' %}" class="list-group-item list-group-item-action active" aria-current="true">Register User</a>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="section">
+      	<div>For Business Owners Registration:</div>
+        <a href="{% url 'registerbusiness' %}" class="list-group-item list-group-item-action active" aria-current="true">Register Business</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
